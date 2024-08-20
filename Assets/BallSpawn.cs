@@ -5,20 +5,50 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class BallSpawn : MonoBehaviour
 {
-    public float upDownAmplitude = 1.0f; // 振幅（上下の移動距離）
+
+    /// <summary>
+    /// 上下に移動する範囲
+    /// </summary>
+    public float upDownRange = 1.0f;
+
+    /// <summary>
+    /// 上下に移動する速度
+    /// </summary>
     public float upDownSpeed = 1.0f; // 移動速度
 
     private float upDownStartY;
+
+    /// <summary>
+    /// 回転の最小値
+    /// </summary>
     public float rotationMin = 30.0f;
+
+    /// <summary>
+    /// 回転の最大値
+    /// </summary>
     public float rotationMax = 90.0f;
+
+    /// <summary>
+    /// 回転の速度
+    /// </summary>
+    public float rotationSpeed = 1.0f;
+
+    /// <summary>
+    /// 弾の発射間隔
+    /// </summary>
     public float shootInterval = 0.1f;
 
+    /// <summary>
+    /// 一度に発射する弾の数
+    /// </summary>
     public int shootCount = 1;
 
+    /// <summary>
+    /// 弾の速度
+    /// </summary>
 
     public int shootSpeed = 10;
 
-    public float rotationSpeed = 1.0f;
 
     private GameObject prefab;
 
@@ -50,20 +80,20 @@ public class BallSpawn : MonoBehaviour
 
     private void UpDown()
     {
-        var y = upDownStartY + upDownAmplitude * Mathf.Cos(Time.time * upDownSpeed);
+        var y = upDownStartY + upDownRange * Mathf.Cos(Time.time * upDownSpeed);
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
 
     private void Rotate()
     {
         // 時間に基づいてCosの値を計算
-        float cosValue = Mathf.Cos(Time.time * rotationSpeed);
+        var cosValue = Mathf.Cos(Time.time * rotationSpeed);
 
         // Cosの値を0から1の範囲に変換
-        float t = (cosValue + 1) / 2;
+        var t = (cosValue + 1) / 2;
 
         // 角度の補間
-        float angle = Mathf.Lerp(rotationMin, rotationMax, t);
+        var angle = Mathf.Lerp(rotationMin, rotationMax, t);
 
         // Z軸周りの回転を適用
         transform.rotation = Quaternion.Euler(0, 0, angle);
