@@ -6,10 +6,12 @@ public class ItemSpawn : MonoBehaviour
 {
     public float spawnInterval = 1.0f;
 
-    private GameObject prefab;
+    private GameObject goldItem;
+    private GameObject motionItem;
+    private GameObject fashionItem;
     void Start()
     {
-        prefab = Resources.Load("GoldItem") as GameObject;
+        goldItem = Resources.Load("GoldItem") as GameObject;
         // InvokeRepeating(nameof(SpawnBall), 0, spawnInterval);
         StartCoroutine(RepeatAction());
     }
@@ -28,7 +30,7 @@ public class ItemSpawn : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
 
             // 実行する処理
-            var item = Instantiate(prefab, transform.position, Quaternion.identity);
+            var item = Instantiate(goldItem, transform.position, Quaternion.identity);
         }
     }
 }

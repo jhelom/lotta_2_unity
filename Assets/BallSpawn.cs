@@ -73,7 +73,7 @@ public class BallSpawn : MonoBehaviour
             yield return new WaitForSeconds(shootInterval);
             for (var i = 0; i < shootCount; i++)
             {
-                SpawnBall(i);
+                SpawnBall();
             }
         }
     }
@@ -99,12 +99,12 @@ public class BallSpawn : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
     }
-    private void SpawnBall(int i)
+    private void SpawnBall()
     {
         var pos = new Vector2(transform.position.x, transform.position.y);
         var ball = Instantiate(prefab, pos, transform.rotation);
         var rb = ball.GetComponent<Rigidbody2D>();
-        var r = i == 0 ? 1 : Random.Range(0.5f, 1.5f);
+        var r = Random.Range(0.7f, 1.3f);
         rb.velocity = transform.right * (shootSpeed * r);
     }
 }
