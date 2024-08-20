@@ -10,21 +10,21 @@ public class ScoreText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(UpdateScore());
+        StartCoroutine(UpdateDisplay());
     }
 
-    IEnumerator UpdateScore()
+    IEnumerator UpdateDisplay()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
             if (playerType == GamePlayerType.Red)
             {
-                text.text = Game.redPlayer.score.ToString();
+                text.text = Game.redPlayer.name + "\n" + Game.redPlayer.score.ToString();
             }
             else
             {
-                text.text = Game.bluePlayer.score.ToString();
+                text.text = Game.bluePlayer.name + "\n" + Game.bluePlayer.score.ToString();
             }
         }
     }
