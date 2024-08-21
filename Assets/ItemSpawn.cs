@@ -11,8 +11,7 @@ public class ItemSpawn : MonoBehaviour
     private GameObject fashionItem;
     void Start()
     {
-        goldItem = Resources.Load("GoldItem") as GameObject;
-        // InvokeRepeating(nameof(SpawnBall), 0, spawnInterval);
+        goldItem = (GameObject)Resources.Load("GoldItem");
         StartCoroutine(RepeatAction());
     }
 

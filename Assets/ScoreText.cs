@@ -5,7 +5,7 @@ using TMPro;
 public class ScoreText : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    public GamePlayerType playerType = GamePlayerType.Red;
+    public PlayerType playerType = PlayerType.Red;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +17,8 @@ public class ScoreText : MonoBehaviour
     {
         while (true)
         {
-            if (playerType == GamePlayerType.Red)
-            {
-                text.text = Game.redPlayer.name + "\n" + Game.redPlayer.score.ToString();
-            }
-            else
-            {
-                text.text = Game.bluePlayer.name + "\n" + Game.bluePlayer.score.ToString();
-            }
-
+            var player = Game.GetPlayer(playerType);
+            text.text = player.name + "\n" + player.score.ToString();
             yield return new WaitForSeconds(0.2f);
         }
     }

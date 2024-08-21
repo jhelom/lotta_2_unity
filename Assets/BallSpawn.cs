@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class BallSpawn : MonoBehaviour
 {
-    public GamePlayerType playerType = GamePlayerType.Red;
+    public PlayerType playerType = PlayerType.Red;
 
     /// <summary>
     /// 上下に移動する範囲
@@ -107,7 +107,7 @@ public class BallSpawn : MonoBehaviour
     {
         var pos = new Vector2(transform.position.x, transform.position.y);
         var ball = Instantiate(prefab, pos, transform.rotation);
-        ball.GetComponent<Renderer>().material.color = playerType == GamePlayerType.Red ? Game.COLOR_RED : Game.COLOR_BLUE;
+        ball.GetComponent<Renderer>().material.color = playerType == PlayerType.Red ? Game.COLOR_RED : Game.COLOR_BLUE;
         var rb = ball.GetComponent<Rigidbody2D>();
         var r = Random.Range(0.8f, 1.2f);
         rb.velocity = transform.right * (shootSpeed * r);

@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[Serializable]
 public class Goal : MonoBehaviour
 {
-    [SerializeField]
-    public GamePlayerType playerType = GamePlayerType.Red;
+    public PlayerType playerType = PlayerType.Red;
 
     // Start is called before the first frame update
     void Start()
@@ -26,14 +24,8 @@ public class Goal : MonoBehaviour
     {
         if (collider.gameObject.tag == "GoldItem")
         {
-            if (playerType == GamePlayerType.Red)
-            {
-                Game.redPlayer.score += 1;
-            }
-            else
-            {
-                Game.bluePlayer.score += 1;
-            }
+            var player = Game.GetPlayer(playerType);
+            player.score += 1;
         }
     }
 }
