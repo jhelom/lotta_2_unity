@@ -16,8 +16,8 @@ public class GameMain : MonoBehaviour
     {
         while (Game.time > 0)
         {
-            yield return new WaitForSeconds(1f);
             Game.CountDown();
+            yield return new WaitForSeconds(1f);
         }
     }
 }

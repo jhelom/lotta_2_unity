@@ -29,8 +29,10 @@ public class ItemSpawn : MonoBehaviour
             // 一定間隔待機
             yield return new WaitForSeconds(spawnInterval);
 
-            // 実行する処理
-            var item = Instantiate(goldItem, transform.position, Quaternion.identity);
+            if (Game.IsActive)
+            {
+                var item = Instantiate(goldItem, transform.position, Quaternion.identity);
+            }
         }
     }
 }

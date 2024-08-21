@@ -17,7 +17,6 @@ public class ScoreText : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
             if (playerType == GamePlayerType.Red)
             {
                 text.text = Game.redPlayer.name + "\n" + Game.redPlayer.score.ToString();
@@ -26,6 +25,8 @@ public class ScoreText : MonoBehaviour
             {
                 text.text = Game.bluePlayer.name + "\n" + Game.bluePlayer.score.ToString();
             }
+
+            yield return new WaitForSeconds(0.2f);
         }
     }
     // Update is called once per frame

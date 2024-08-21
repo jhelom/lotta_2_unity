@@ -2,17 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
 
 public static class Game
 {
-    const int COUNTDOWN_TIME_SECONDS = 60 * 5;
-    public static GamePlayer bluePlayer = new GamePlayer();
-    public static GamePlayer redPlayer = new GamePlayer();
+    const string SCENE_MAIN = "MainScene";
 
-    public static float time = 0;
-    public static int wave = 0;
+    const int COUNTDOWN_TIME_SECONDS = 60 * 1;
+    public static readonly Color32 COLOR_RED = new Color32(255, 0, 192, 255);
+    public static readonly Color32 COLOR_BLUE = new Color32(0, 192, 255, 255);
+    public static GamePlayer bluePlayer = new();
+    public static GamePlayer redPlayer = new();
+
+    public static float time
+    {
+        get;
+        private set;
+    } = 0.0f;
+
+    public static int wave
+    {
+        get;
+        private set;
+    } = 0;
+
+    public static bool IsActive
+    {
+        get;
+        private set;
+    } = false;
+
     public static void Start()
     {
+        IsActive = true;
+
         redPlayer = new GamePlayer()
         {
             name = "Lotta"
@@ -29,8 +52,9 @@ public static class Game
 
     public static void End()
     {
-
+        IsActive = false;
     }
+
 
     public static void CountDown()
     {
