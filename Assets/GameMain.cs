@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class GameMain : MonoBehaviour
 {
+
     public static GameMain? Instance
     {
         get;
@@ -13,6 +15,7 @@ public class GameMain : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 24;
         Instance = this;
         Game.Start();
         StartCoroutine(TimeCount());

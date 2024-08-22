@@ -105,8 +105,8 @@ public class BallSpawn : MonoBehaviour
     }
     private void SpawnBall()
     {
-        var pos = new Vector2(transform.position.x, transform.position.y);
-        var ball = Instantiate(prefab, pos, transform.rotation);
+        var ball = BallPool.Instance.Get();
+        ball.transform.position = transform.position;
         ball.GetComponent<Renderer>().material.color = playerType == PlayerType.Red ? Game.COLOR_RED : Game.COLOR_BLUE;
         var rb = ball.GetComponent<Rigidbody2D>();
         var r = Random.Range(0.8f, 1.2f);

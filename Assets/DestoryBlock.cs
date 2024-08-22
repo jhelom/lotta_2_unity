@@ -19,6 +19,17 @@ public class DestoryBlock : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "GoldItem")
+        {
+            GoldItemPool.Instance.Release(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Ball")
+        {
+            BallPool.Instance.Release(collision.gameObject);
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

@@ -6,12 +6,8 @@ public class ItemSpawn : MonoBehaviour
 {
     public float spawnInterval = 1.0f;
 
-    private GameObject goldItem;
-    private GameObject motionItem;
-    private GameObject fashionItem;
     void Start()
     {
-        goldItem = (GameObject)Resources.Load("GoldItem");
         StartCoroutine(RepeatAction());
     }
 
@@ -30,7 +26,9 @@ public class ItemSpawn : MonoBehaviour
 
             if (Game.IsActive)
             {
-                var item = Instantiate(goldItem, transform.position, Quaternion.identity);
+                var item = GoldItemPool.Instance.Get();
+                item.transform.position = transform.position;
+                item.transform.rotation = Quaternion.identity;
             }
         }
     }
